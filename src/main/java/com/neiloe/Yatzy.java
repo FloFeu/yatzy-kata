@@ -9,17 +9,10 @@ public class Yatzy {
         return roll.totalOfPoints();
     }
 
-    public static int yatzy(int d1, int d2, int d3, int d4, int d5) {
-        if (areEqual(d1, d2, d3, d4, d5)) {
-            return 50;
-        }
-
-        return 0;
+    public static int yatzy(DiceRoll diceRoll) {
+        return diceRoll.areEqual();
     }
 
-    private static boolean areEqual(int d1, int d2, int d3, int d4, int d5) {
-        return d1 == d2 && d1 == d3 && d1 == d4 && d1 == d5;
-    }
 
     public static int ones(int d1, int d2, int d3, int d4, int d5) {
         List<Integer> dice = Arrays.asList(d1, d2, d3, d4, d5);

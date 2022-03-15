@@ -3,7 +3,7 @@ package com.neiloe;
 import java.util.Arrays;
 import java.util.List;
 
-public class DiceRoll{
+public class DiceRoll {
 
     private final List<Integer> dice;
 
@@ -13,5 +13,14 @@ public class DiceRoll{
 
     public int totalOfPoints() {
         return dice.stream().mapToInt(die -> die).sum();
+    }
+
+    public int areEqual() {
+        for (int i = 0; i < dice.size() - 1; i++) {
+            if (dice.get(i) != dice.get(i + 1)) {
+                return 0;
+            }
+        }
+        return 50;
     }
 }
