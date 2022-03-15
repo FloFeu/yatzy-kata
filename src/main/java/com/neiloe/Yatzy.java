@@ -39,6 +39,24 @@ public class Yatzy {
         return countValues(dice, 3);
     }
 
+    public static int fours(int d1, int d2, int d3, int d4, int d5) {
+        List<Integer> dice = Arrays.asList(d1, d2, d3, d4, d5);
+
+        return countValues(dice, 4);
+    }
+
+    public static int fives(int d1, int d2, int d3, int d4, int d5) {
+        List<Integer> dice = Arrays.asList(d1, d2, d3, d4, d5);
+
+        return countValues(dice, 5);
+    }
+
+    public static int sixes(int d1, int d2, int d3, int d4, int d5) {
+        List<Integer> dice = Arrays.asList(d1, d2, d3, d4, d5);
+
+        return countValues(dice, 6);
+    }
+
     private static int countValues(List<Integer> dice, int value) {
         int sum = 0;
         for (Integer die : dice) {
@@ -56,34 +74,6 @@ public class Yatzy {
         dice[2] = d3;
         dice[3] = d4;
         dice[4] = d5;
-    }
-
-    public int fours() {
-        int sum;
-        sum = 0;
-        for (int at = 0; at != 5; at++) {
-            if (dice[at] == 4) {
-                sum += 4;
-            }
-        }
-        return sum;
-    }
-
-    public int fives() {
-        int s = 0;
-        int i;
-        for (i = 0; i < dice.length; i++)
-            if (dice[i] == 5)
-                s = s + 5;
-        return s;
-    }
-
-    public int sixes() {
-        int sum = 0;
-        for (int at = 0; at < dice.length; at++)
-            if (dice[at] == 6)
-                sum = sum + 6;
-        return sum;
     }
 
     public static int pair(int d1, int d2, int d3, int d4, int d5) {
