@@ -1,61 +1,37 @@
 package com.neiloe;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Yatzy {
 
-    public static int chance(DiceRoll roll) {
-        return roll.totalOfPoints();
+    public static int chance(DiceRoll diceRoll) {
+        return diceRoll.totalOfPoints();
     }
 
     public static int yatzy(DiceRoll diceRoll) {
         return diceRoll.areEqual();
     }
 
-
-    public static int ones(int d1, int d2, int d3, int d4, int d5) {
-        List<Integer> dice = Arrays.asList(d1, d2, d3, d4, d5);
-
-        return countValues(dice, 1);
+    public static int ones(DiceRoll diceRoll) {
+        return diceRoll.countValues(1);
     }
 
-    public static int twos(int d1, int d2, int d3, int d4, int d5) {
-        List<Integer> dice = Arrays.asList(d1, d2, d3, d4, d5);
-
-        return countValues(dice, 2);
+    public static int twos(DiceRoll diceRoll) {
+        return diceRoll.countValues(2);
     }
 
-    public static int threes(int d1, int d2, int d3, int d4, int d5) {
-        List<Integer> dice = Arrays.asList(d1, d2, d3, d4, d5);
-
-        return countValues(dice, 3);
+    public static int threes(DiceRoll diceRoll) {
+        return diceRoll.countValues(3);
     }
 
-    public static int fours(int d1, int d2, int d3, int d4, int d5) {
-        List<Integer> dice = Arrays.asList(d1, d2, d3, d4, d5);
-
-        return countValues(dice, 4);
+    public static int fours(DiceRoll diceRoll) {
+        return diceRoll.countValues(4);
     }
 
-    public static int fives(int d1, int d2, int d3, int d4, int d5) {
-        List<Integer> dice = Arrays.asList(d1, d2, d3, d4, d5);
-
-        return countValues(dice, 5);
+    public static int fives(DiceRoll diceRoll) {
+        return diceRoll.countValues(5);
     }
 
-    public static int sixes(int d1, int d2, int d3, int d4, int d5) {
-        List<Integer> dice = Arrays.asList(d1, d2, d3, d4, d5);
-
-        return countValues(dice, 6);
-    }
-
-    private static int countValues(List<Integer> dice, int value) {
-        int sum = 0;
-        for (Integer die : dice) {
-            if (die == value) sum += value;
-        }
-        return sum;
+    public static int sixes(DiceRoll diceRoll) {
+        return diceRoll.countValues(6);
     }
 
     public static int pair(int d1, int d2, int d3, int d4, int d5) {
@@ -68,7 +44,7 @@ public class Yatzy {
 
         for (int i = 5; i > 0; i--) {
             if (counts[i] >= 2) {
-                return (i+1) * 2;
+                return (i + 1) * 2;
             }
         }
 
