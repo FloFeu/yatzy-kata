@@ -1,7 +1,6 @@
 public class Yatzy {
 
-    public static int chance(int d1, int d2, int d3, int d4, int d5)
-    {
+    public static int chance(int d1, int d2, int d3, int d4, int d5) {
         int total = 0;
         total += d1;
         total += d2;
@@ -56,14 +55,14 @@ public class Yatzy {
     }
 
     protected int[] dice;
-    public Yatzy(int d1, int d2, int d3, int d4, int _5)
+    public Yatzy(int d1, int d2, int d3, int d4, int d5)
     {
         dice = new int[5];
         dice[0] = d1;
         dice[1] = d2;
         dice[2] = d3;
         dice[3] = d4;
-        dice[4] = _5;
+        dice[4] = d5;
     }
 
     public int fours()
@@ -97,7 +96,7 @@ public class Yatzy {
         return sum;
     }
 
-    public static int score_pair(int d1, int d2, int d3, int d4, int d5)
+    public static int pair(int d1, int d2, int d3, int d4, int d5)
     {
         int[] counts = new int[6];
         counts[d1-1]++;
@@ -112,7 +111,7 @@ public class Yatzy {
         return 0;
     }
 
-    public static int two_pair(int d1, int d2, int d3, int d4, int d5)
+    public static int twoPairs(int d1, int d2, int d3, int d4, int d5)
     {
         int[] counts = new int[6];
         counts[d1-1]++;
@@ -133,12 +132,12 @@ public class Yatzy {
             return 0;
     }
 
-    public static int four_of_a_kind(int _1, int _2, int d3, int d4, int d5)
+    public static int fourOfAKind(int d1, int d2, int d3, int d4, int d5)
     {
         int[] tallies;
         tallies = new int[6];
-        tallies[_1-1]++;
-        tallies[_2-1]++;
+        tallies[d1-1]++;
+        tallies[d2-1]++;
         tallies[d3-1]++;
         tallies[d4-1]++;
         tallies[d5-1]++;
@@ -148,7 +147,7 @@ public class Yatzy {
         return 0;
     }
 
-    public static int three_of_a_kind(int d1, int d2, int d3, int d4, int d5)
+    public static int threeOfAKind(int d1, int d2, int d3, int d4, int d5)
     {
         int[] t;
         t = new int[6];
