@@ -1,3 +1,4 @@
+import com.neiloe.DiceRoll;
 import com.neiloe.Yatzy;
 import org.junit.Test;
 
@@ -7,8 +8,8 @@ public class YatzyTest {
 
     @Test
     public void chance() {
-        assertEquals(14, Yatzy.chance(1, 1, 3, 3, 6));
-        assertEquals(21, Yatzy.chance(4, 5, 5, 6, 1));
+        assertEquals(14, Yatzy.chance(new DiceRoll(1, 1, 3, 3, 6)));
+        assertEquals(21, Yatzy.chance(new DiceRoll(4, 5, 5, 6, 1)));
     }
 
     @Test

@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Yatzy {
 
-    public static int chance(int d1, int d2, int d3, int d4, int d5) {
-        return d1 + d2 + d3 + d4 + d5;
+    public static int chance(DiceRoll roll) {
+        return roll.totalOfPoints();
     }
 
     public static int yatzy(int d1, int d2, int d3, int d4, int d5) {
@@ -72,10 +72,18 @@ public class Yatzy {
         counts[d3 - 1]++;
         counts[d4 - 1]++;
         counts[d5 - 1]++;
-        int at;
-        for (at = 0; at != 6; at++)
-            if (counts[6 - at - 1] >= 2)
-                return (6 - at) * 2;
+
+        for (int i = 5; i > 0; i--) {
+            if (counts[i] >= 2) {
+                return (i+1) * 2;
+            }
+        }
+
+//        for (int i = 0; i < 6; i++) {
+//            if (counts[6 - i - 1] >= 2) {
+//                return (6 - i) * 2;
+//            }
+//        }
         return 0;
     }
 
