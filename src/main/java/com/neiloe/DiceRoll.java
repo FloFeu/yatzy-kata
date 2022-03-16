@@ -97,6 +97,22 @@ public class DiceRoll {
         return 0;
     }
 
+    public int fourOfAKind() {
+        List<Integer> diceSorted = sortFromHighestToLowest();
+
+        for (int i = 0; i < diceSorted.size() - 3; i++) {
+
+            boolean fourDiceAreEqual = Objects.equals(diceSorted.get(i), diceSorted.get(i + 1))
+                    && Objects.equals(diceSorted.get(i + 1), diceSorted.get(i + 2))
+                    && Objects.equals(diceSorted.get(i + 2), diceSorted.get(i + 3));
+
+            if (fourDiceAreEqual) {
+                return diceSorted.get(i) * 4;
+            }
+        }
+        return 0;
+    }
+
     public int smallStraight() {
         List<Integer> smallStraight = Arrays.asList(1, 2, 3, 4, 5);
 
@@ -107,11 +123,12 @@ public class DiceRoll {
     }
 
     public int largeStraight() {
-        List<Integer> smallStraight = Arrays.asList(2, 3, 4, 5, 6);
+        List<Integer> largeStraight = Arrays.asList(2, 3, 4, 5, 6);
 
-        if (dice.containsAll(smallStraight)) {
+        if (dice.containsAll(largeStraight)) {
             return 20;
         }
         return 0;
     }
+
 }
