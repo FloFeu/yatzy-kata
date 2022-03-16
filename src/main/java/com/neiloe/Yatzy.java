@@ -1,6 +1,11 @@
 package com.neiloe;
 
+import java.util.List;
+
 public class Yatzy {
+
+    public static final int YATZY = 50;
+    public static final int ZERO = 0;
 
     public static int chance(DiceRoll diceRoll) {
         return diceRoll.totalOfPoints();
@@ -8,9 +13,9 @@ public class Yatzy {
 
     public static int yatzy(DiceRoll diceRoll) {
         if (diceRoll.isYatzy() ) {
-            return 50;
+            return YATZY;
         }
-        return 0;
+        return ZERO;
     }
 
     public static int ones(DiceRoll diceRoll) {
@@ -38,11 +43,20 @@ public class Yatzy {
     }
 
     public static int pair(DiceRoll diceRoll) {
-        return diceRoll.findPair();
+        List<Integer> pairs = diceRoll.getPairs();
+        if (!pairs.isEmpty()) {
+            return pairs.get(0) * 2;
+        }
+        return ZERO;
     }
 
     public static int twoPairs(DiceRoll diceRoll) {
-        return diceRoll.findTwoPairs();
+        List<Integer> pairs = diceRoll.getPairs();
+
+        if ( pairs.size() >= 2 ) {
+            return (pairs.get(0) + pairs.get(1)) * 2;
+        }
+        return ZERO;
     }
 
     public static int threeOfAKind(DiceRoll diceRoll) {
