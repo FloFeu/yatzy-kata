@@ -34,26 +34,28 @@ public class Yatzy {
         return diceRoll.countValues(6);
     }
 
-    public static int pair(int d1, int d2, int d3, int d4, int d5) {
-        int[] counts = new int[6];
-        counts[d1 - 1]++;
-        counts[d2 - 1]++;
-        counts[d3 - 1]++;
-        counts[d4 - 1]++;
-        counts[d5 - 1]++;
+    public static int pair(DiceRoll diceRoll) {
+        return diceRoll.findPair();
 
-        for (int i = 5; i > 0; i--) {
-            if (counts[i] >= 2) {
-                return (i + 1) * 2;
-            }
-        }
-
-//        for (int i = 0; i < 6; i++) {
-//            if (counts[6 - i - 1] >= 2) {
-//                return (6 - i) * 2;
+//        int[] counts = new int[6];
+//        counts[d1 - 1]++;
+//        counts[d2 - 1]++;
+//        counts[d3 - 1]++;
+//        counts[d4 - 1]++;
+//        counts[d5 - 1]++;
+//
+//        for (int i = 5; i > 0; i--) {
+//            if (counts[i] >= 2) {
+//                return (i + 1) * 2;
 //            }
 //        }
-        return 0;
+//
+////        for (int i = 0; i < 6; i++) {
+////            if (counts[6 - i - 1] >= 2) {
+////                return (6 - i) * 2;
+////            }
+////        }
+//        return 0;
     }
 
     public static int twoPairs(int d1, int d2, int d3, int d4, int d5) {
