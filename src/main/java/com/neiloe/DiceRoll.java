@@ -33,7 +33,7 @@ public class DiceRoll {
 
     public int findPair() {
 
-        List diceSorted = sortFromHighestToLowest();
+        List<Integer> diceSorted = sortFromHighestToLowest();
 
         for (int i = 0; i < diceSorted.size() - 1; i++) {
 
@@ -48,9 +48,37 @@ public class DiceRoll {
         return 0;
     }
 
-    public List sortFromHighestToLowest() {
-        ArrayList<Integer> diceSorted = new ArrayList(dice);
-        Collections.sort(diceSorted, Collections.reverseOrder());
+    public List<Integer> sortFromHighestToLowest() {
+        ArrayList<Integer> diceSorted = new ArrayList<>(dice);
+        diceSorted.sort(Collections.reverseOrder());
         return diceSorted;
+    }
+
+    public int findTwoPairs() {
+        int foundPair = 0;
+        ArrayList<Integer> pairs = new ArrayList<>();
+
+        List<Integer> diceSorted = sortFromHighestToLowest();
+
+        for (int i = 0; i < diceSorted.size() - 1; i++) {
+
+            int currentDie = diceSorted.get(i);
+            int nextDie = diceSorted.get(i + 1);
+            boolean isPair = currentDie == nextDie;
+
+            if (isPair && isAnotherPair(pairs, currentDie)) {
+                pairs.add(currentDie);
+                foundPair++;
+            }
+        }
+
+        if (foundPair >= 2) {
+            return (pairs.get(0) + pairs.get(1)) * 2;
+        }
+        return 0;
+    }
+
+    private boolean isAnotherPair(ArrayList<Integer> pairs, int currentDie) {
+        return !pairs.contains(currentDie);
     }
 }
