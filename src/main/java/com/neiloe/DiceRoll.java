@@ -1,8 +1,6 @@
 package com.neiloe;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class DiceRoll {
 
@@ -31,5 +29,28 @@ public class DiceRoll {
             if (die == value) sum += value;
         }
         return sum;
+    }
+
+    public int findPair() {
+
+        List diceSorted = sortFromHighestToLowest();
+
+        for (int i = 0; i < diceSorted.size() - 1; i++) {
+
+            Object currentDie = diceSorted.get(i);
+            Object nextDie = diceSorted.get(i + 1);
+
+            if (currentDie == nextDie) {
+                return (int) currentDie * 2;
+            }
+
+        }
+        return 0;
+    }
+
+    public List sortFromHighestToLowest() {
+        ArrayList<Integer> diceSorted = new ArrayList(dice);
+        Collections.sort(diceSorted, Collections.reverseOrder());
+        return diceSorted;
     }
 }
