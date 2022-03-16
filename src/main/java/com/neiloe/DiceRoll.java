@@ -96,4 +96,14 @@ public class DiceRoll {
         }
         return 0;
     }
+
+    public int smallStraight() {
+        List<Integer> smallStraight = Arrays.asList(1, 2, 3, 4, 5);
+
+        if (dice.containsAll(smallStraight)) {
+            return 15;
+        }
+        return 0;
+    }
+
 }
