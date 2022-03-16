@@ -7,7 +7,10 @@ public class Yatzy {
     }
 
     public static int yatzy(DiceRoll diceRoll) {
-        return diceRoll.areEqual();
+        if (diceRoll.isYatzy() ) {
+            return 50;
+        }
+        return 0;
     }
 
     public static int ones(DiceRoll diceRoll) {
@@ -15,23 +18,23 @@ public class Yatzy {
     }
 
     public static int twos(DiceRoll diceRoll) {
-        return diceRoll.countValues(2);
+        return diceRoll.countValues(2) * 2;
     }
 
     public static int threes(DiceRoll diceRoll) {
-        return diceRoll.countValues(3);
+        return diceRoll.countValues(3) * 3;
     }
 
     public static int fours(DiceRoll diceRoll) {
-        return diceRoll.countValues(4);
+        return diceRoll.countValues(4) * 4;
     }
 
     public static int fives(DiceRoll diceRoll) {
-        return diceRoll.countValues(5);
+        return diceRoll.countValues(5) * 5;
     }
 
     public static int sixes(DiceRoll diceRoll) {
-        return diceRoll.countValues(6);
+        return diceRoll.countValues(6) * 6;
     }
 
     public static int pair(DiceRoll diceRoll) {
@@ -49,7 +52,6 @@ public class Yatzy {
     public static int fourOfAKind(DiceRoll diceRoll) {
         return diceRoll.fourOfAKind();
     }
-
 
     public static int smallStraight(DiceRoll diceRoll) {
         return diceRoll.smallStraight();

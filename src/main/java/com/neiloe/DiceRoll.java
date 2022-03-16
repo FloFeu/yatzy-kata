@@ -14,19 +14,19 @@ public class DiceRoll {
         return dice.stream().mapToInt(die -> die).sum();
     }
 
-    public int areEqual() {
-        for (int i = 0; i < dice.size() - 1; i++) {
-            if (!Objects.equals(dice.get(i), dice.get(i + 1))) {
-                return 0;
+    public boolean isYatzy() {
+        for (int die : dice ) {
+            if (die != dice.get(0)) {
+                return false;
             }
         }
-        return 50;
+        return true;
     }
 
     public int countValues(int value) {
         int sum = 0;
         for (Integer die : dice) {
-            if (die == value) sum += value;
+            if (die == value) sum ++;
         }
         return sum;
     }

@@ -54,8 +54,8 @@ public class YatzyTest {
 
     @Test
     public void sixes() {
-        assertEquals(0,  Yatzy.sixes(new DiceRoll(4, 4, 4, 5, 5)));
-        assertEquals(6,  Yatzy.sixes(new DiceRoll(4, 4, 6, 5, 5)));
+        assertEquals(0, Yatzy.sixes(new DiceRoll(4, 4, 4, 5, 5)));
+        assertEquals(6, Yatzy.sixes(new DiceRoll(4, 4, 6, 5, 5)));
         assertEquals(18, Yatzy.sixes(new DiceRoll(6, 5, 6, 6, 5)));
     }
 
