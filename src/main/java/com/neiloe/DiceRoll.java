@@ -81,4 +81,19 @@ public class DiceRoll {
     private boolean isAnotherPair(ArrayList<Integer> pairs, int currentDie) {
         return !pairs.contains(currentDie);
     }
+
+    public int threeOfAKind() {
+        List<Integer> diceSorted = sortFromHighestToLowest();
+
+        for (int i = 0; i < diceSorted.size() - 2; i++) {
+
+            boolean threeDiceAreEqual = Objects.equals(diceSorted.get(i), diceSorted.get(i + 1))
+                    && Objects.equals(diceSorted.get(i + 1), diceSorted.get(i + 2));
+
+            if (threeDiceAreEqual) {
+                return diceSorted.get(i) * 3;
+            }
+        }
+        return 0;
+    }
 }
