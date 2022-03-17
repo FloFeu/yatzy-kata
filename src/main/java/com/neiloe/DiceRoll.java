@@ -2,16 +2,23 @@ package com.neiloe;
 
 import java.util.*;
 import java.util.Map.Entry;
+import java.util.stream.Stream;
 
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.groupingBy;
 
 public class DiceRoll {
 
+    private static final List<Integer> SMALL_STRAIGHT = List.of(1, 2, 3, 4, 5);
+    private static final List<Integer> LARGE_STRAIGHT = List.of(2, 3, 4, 5, 6);
     private final List<Integer> dice;
 
-    public DiceRoll(int d1, int d2, int d3, int d4, int d5) {
-        this.dice = Arrays.asList(d1, d2, d3, d4, d5);
+    private DiceRoll(int d1, int d2, int d3, int d4, int d5) {
+        this.dice = List.of(d1, d2, d3, d4, d5);
+    }
+
+    public static DiceRoll of(int d1, int d2, int d3, int d4, int d5) {
+        return new DiceRoll(d1, d2, d3, d4, d5);
     }
 
     public int totalOfPoints() {
@@ -19,70 +26,50 @@ public class DiceRoll {
     }
 
     public boolean isYatzy() {
-        for (int die : dice) {
-            if (die != dice.get(0)) {
-                return false;
-            }
-        }
-        return true;
+        return dice.stream().mapToInt(die -> die).noneMatch(die -> die != dice.get(0));
     }
 
     public int countValues(int value) {
-        int sum = 0;
-        for (Integer die : dice) {
-            if (die == value) sum++;
-        }
-        return sum;
+        return (int) dice.stream().filter(die -> die == value).count();
     }
 
-    public List<Integer> getPairs() {
-        List<Integer> diceSorted = sortFromHighestToLowest();
-        List<Integer> pairs = new ArrayList<>();
-
-        for (int i = 0; i < diceSorted.size() - 1; i++) {
-            int currentDie = diceSorted.get(i);
-            int nextDie = diceSorted.get(i + 1);
-
-            if (currentDie == nextDie && !pairs.contains(currentDie)) {
-                pairs.add(currentDie);
-            }
-        }
-
-        return pairs;
-    }
-
-    public List<Integer> sortFromHighestToLowest() {
-        List<Integer> diceSorted = new ArrayList<>(dice);
-        diceSorted.sort(Collections.reverseOrder());
-        return diceSorted;
+    public List<Integer> findPairs(int number) {
+        return getValueOfFilteredDice(number)
+                .sorted(Comparator.reverseOrder())
+                .toList();
     }
 
     public Integer getDiceValueFoundMoreThan(int number) {
-        return dice.stream()
-                .collect(groupingBy(identity()))
-                .entrySet()
-                .stream().filter(map -> map.getValue().size() >= number)
-                .map(Entry::getKey)
+        return getValueOfFilteredDice(number)
                 .findFirst()
                 .orElse(0);
     }
 
+    private Stream<Integer> getValueOfFilteredDice(int number) {
+        return getDiceGroupedByValues()
+                .entrySet()
+                .stream()
+                .filter(map -> map.getValue().size() >= number)
+                .map(Entry::getKey);
+    }
+
+    private Map<Integer, List<Integer>> getDiceGroupedByValues() {
+        return dice.stream()
+                .collect(groupingBy(identity()));
+    }
+
     public boolean isSmallStraight() {
-        List<Integer> smallStraight = Arrays.asList(1, 2, 3, 4, 5);
-        return dice.containsAll(smallStraight);
+        return dice.containsAll(SMALL_STRAIGHT);
     }
 
     public boolean isLargeStraight() {
-        List<Integer> largeStraight = Arrays.asList(2, 3, 4, 5, 6);
-        return dice.containsAll(largeStraight);
+        return dice.containsAll(LARGE_STRAIGHT);
     }
 
     public boolean isFullHouse() {
-        List<Integer> diceValues = dice.stream()
-                .collect(groupingBy(identity()))
-                .entrySet()
+        List<Integer> diceValues = getDiceGroupedByValues()
+                .keySet()
                 .stream()
-                .map(Entry::getKey)
                 .toList();
 
         return diceValues.size() == 2;

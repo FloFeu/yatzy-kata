@@ -4,10 +4,13 @@ import java.util.List;
 
 public class Yatzy {
 
-    public static final int YATZY = 50;
-    public static final int ZERO = 0;
-    public static final int SMALL_STRAIGHT = 15;
-    public static final int LARGE_STRAIGHT = 20;
+    private static final int YATZY_POINTS = 50;
+    private static final int ZERO = 0;
+    private static final int SMALL_STRAIGHT = 15;
+    private static final int LARGE_STRAIGHT = 20;
+
+    private Yatzy() {
+    }
 
     public static int chance(DiceRoll diceRoll) {
         return diceRoll.totalOfPoints();
@@ -15,7 +18,7 @@ public class Yatzy {
 
     public static int yatzy(DiceRoll diceRoll) {
         if (diceRoll.isYatzy()) {
-            return YATZY;
+            return YATZY_POINTS;
         }
         return ZERO;
     }
@@ -45,7 +48,7 @@ public class Yatzy {
     }
 
     public static int pair(DiceRoll diceRoll) {
-        List<Integer> pairs = diceRoll.getPairs();
+        List<Integer> pairs = diceRoll.findPairs(2);
 
         if (!pairs.isEmpty()) {
             return pairs.get(0) * 2;
@@ -54,7 +57,7 @@ public class Yatzy {
     }
 
     public static int twoPairs(DiceRoll diceRoll) {
-        List<Integer> pairs = diceRoll.getPairs();
+        List<Integer> pairs = diceRoll.findPairs(2);
 
         if (pairs.size() >= 2) {
             return (pairs.get(0) + pairs.get(1)) * 2;
