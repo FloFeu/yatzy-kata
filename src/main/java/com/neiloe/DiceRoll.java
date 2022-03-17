@@ -2,8 +2,6 @@ package com.neiloe;
 
 import java.util.*;
 import java.util.Map.Entry;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.groupingBy;
@@ -21,7 +19,7 @@ public class DiceRoll {
     }
 
     public boolean isYatzy() {
-        for (int die : dice ) {
+        for (int die : dice) {
             if (die != dice.get(0)) {
                 return false;
             }
@@ -32,7 +30,7 @@ public class DiceRoll {
     public int countValues(int value) {
         int sum = 0;
         for (Integer die : dice) {
-            if (die == value) sum ++;
+            if (die == value) sum++;
         }
         return sum;
     }
@@ -79,4 +77,14 @@ public class DiceRoll {
         return dice.containsAll(largeStraight);
     }
 
+    public boolean isFullHouse() {
+        List<Integer> diceValues = dice.stream()
+                .collect(groupingBy(identity()))
+                .entrySet()
+                .stream()
+                .map(Entry::getKey)
+                .toList();
+
+        return diceValues.size() == 2;
+    }
 }
