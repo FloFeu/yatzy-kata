@@ -6,6 +6,8 @@ public class Yatzy {
 
     public static final int YATZY = 50;
     public static final int ZERO = 0;
+    public static final int SMALL_STRAIGHT = 15;
+    public static final int LARGE_STRAIGHT = 20;
 
     public static int chance(DiceRoll diceRoll) {
         return diceRoll.totalOfPoints();
@@ -68,11 +70,17 @@ public class Yatzy {
     }
 
     public static int smallStraight(DiceRoll diceRoll) {
-        return diceRoll.smallStraight();
+        if (diceRoll.isSmallStraight()) {
+            return SMALL_STRAIGHT;
+        }
+        return ZERO;
     }
 
     public static int largeStraight(DiceRoll diceRoll) {
-        return diceRoll.largeStraight();
+        if (diceRoll.isLargeStraight()) {
+            return LARGE_STRAIGHT;
+        }
+        return ZERO;
     }
 
     public static int fullHouse(int d1, int d2, int d3, int d4, int d5) {

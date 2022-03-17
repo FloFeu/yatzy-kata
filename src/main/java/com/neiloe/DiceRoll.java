@@ -36,12 +36,11 @@ public class DiceRoll {
         List<Integer> pairs = new ArrayList<>();
 
         for (int i = 0; i < diceSorted.size() - 1; i++) {
-
-            Object currentDie = diceSorted.get(i);
-            Object nextDie = diceSorted.get(i + 1);
+            int currentDie = diceSorted.get(i);
+            int nextDie = diceSorted.get(i + 1);
 
             if (currentDie == nextDie && !pairs.contains(currentDie)) {
-                pairs.add((int) currentDie);
+                pairs.add(currentDie);
             }
         }
 
@@ -49,7 +48,7 @@ public class DiceRoll {
     }
 
     public List<Integer> sortFromHighestToLowest() {
-        ArrayList<Integer> diceSorted = new ArrayList<>(dice);
+        List<Integer> diceSorted = new ArrayList<>(dice);
         diceSorted.sort(Collections.reverseOrder());
         return diceSorted;
     }
@@ -85,22 +84,14 @@ public class DiceRoll {
         return 0;
     }
 
-    public int smallStraight() {
+    public boolean isSmallStraight() {
         List<Integer> smallStraight = Arrays.asList(1, 2, 3, 4, 5);
-
-        if (dice.containsAll(smallStraight)) {
-            return 15;
-        }
-        return 0;
+        return dice.containsAll(smallStraight);
     }
 
-    public int largeStraight() {
+    public boolean isLargeStraight() {
         List<Integer> largeStraight = Arrays.asList(2, 3, 4, 5, 6);
-
-        if (dice.containsAll(largeStraight)) {
-            return 20;
-        }
-        return 0;
+        return dice.containsAll(largeStraight);
     }
 
 }
