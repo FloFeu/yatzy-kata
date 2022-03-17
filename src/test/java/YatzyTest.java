@@ -107,8 +107,9 @@ public class YatzyTest {
 
     @Test
     public void fullHouse() {
-        assertEquals(8, Yatzy.fullHouse(1, 1, 2, 2, 2));
-        assertEquals(0, Yatzy.fullHouse(2, 2, 3, 3, 4));
-        assertEquals(0, Yatzy.fullHouse(4, 4, 4, 4, 4));
+        assertEquals(8, Yatzy.fullHouse(new DiceRoll(1, 1, 2, 2, 2)));
+        assertEquals(0, Yatzy.fullHouse(new DiceRoll(2, 2, 3, 3, 4)));
+        assertEquals(0, Yatzy.fullHouse(new DiceRoll(4, 4, 4, 4, 4)));
+        assertEquals(17, Yatzy.fullHouse(new DiceRoll(5, 5, 5, 1, 1)));
     }
 }
