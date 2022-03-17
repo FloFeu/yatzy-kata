@@ -1,6 +1,12 @@
 package com.neiloe;
 
 import java.util.*;
+import java.util.Map.Entry;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static java.util.function.Function.identity;
+import static java.util.stream.Collectors.groupingBy;
 
 public class DiceRoll {
 
@@ -53,35 +59,14 @@ public class DiceRoll {
         return diceSorted;
     }
 
-    public int threeOfAKind() {
-        List<Integer> diceSorted = sortFromHighestToLowest();
-
-        for (int i = 0; i < diceSorted.size() - 2; i++) {
-
-            boolean threeDiceAreEqual = Objects.equals(diceSorted.get(i), diceSorted.get(i + 1))
-                    && Objects.equals(diceSorted.get(i + 1), diceSorted.get(i + 2));
-
-            if (threeDiceAreEqual) {
-                return diceSorted.get(i) * 3;
-            }
-        }
-        return 0;
-    }
-
-    public int fourOfAKind() {
-        List<Integer> diceSorted = sortFromHighestToLowest();
-
-        for (int i = 0; i < diceSorted.size() - 3; i++) {
-
-            boolean fourDiceAreEqual = Objects.equals(diceSorted.get(i), diceSorted.get(i + 1))
-                    && Objects.equals(diceSorted.get(i + 1), diceSorted.get(i + 2))
-                    && Objects.equals(diceSorted.get(i + 2), diceSorted.get(i + 3));
-
-            if (fourDiceAreEqual) {
-                return diceSorted.get(i) * 4;
-            }
-        }
-        return 0;
+    public Integer getDiceValueFoundMoreThan(int number) {
+        return dice.stream()
+                .collect(groupingBy(identity()))
+                .entrySet()
+                .stream().filter(map -> map.getValue().size() >= number)
+                .map(Entry::getKey)
+                .findFirst()
+                .orElse(0);
     }
 
     public boolean isSmallStraight() {

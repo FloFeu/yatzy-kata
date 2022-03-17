@@ -14,7 +14,7 @@ public class Yatzy {
     }
 
     public static int yatzy(DiceRoll diceRoll) {
-        if (diceRoll.isYatzy() ) {
+        if (diceRoll.isYatzy()) {
             return YATZY;
         }
         return ZERO;
@@ -46,6 +46,7 @@ public class Yatzy {
 
     public static int pair(DiceRoll diceRoll) {
         List<Integer> pairs = diceRoll.getPairs();
+
         if (!pairs.isEmpty()) {
             return pairs.get(0) * 2;
         }
@@ -55,18 +56,18 @@ public class Yatzy {
     public static int twoPairs(DiceRoll diceRoll) {
         List<Integer> pairs = diceRoll.getPairs();
 
-        if ( pairs.size() >= 2 ) {
+        if (pairs.size() >= 2) {
             return (pairs.get(0) + pairs.get(1)) * 2;
         }
         return ZERO;
     }
 
     public static int threeOfAKind(DiceRoll diceRoll) {
-        return diceRoll.threeOfAKind();
+        return diceRoll.getDiceValueFoundMoreThan(3) * 3;
     }
 
     public static int fourOfAKind(DiceRoll diceRoll) {
-        return diceRoll.fourOfAKind();
+        return diceRoll.getDiceValueFoundMoreThan(4) * 4;
     }
 
     public static int smallStraight(DiceRoll diceRoll) {
