@@ -22,15 +22,21 @@ public class DiceRoll {
     }
 
     public int totalOfPoints() {
-        return dice.stream().mapToInt(die -> die).sum();
+        return dice.stream()
+            .mapToInt(die -> die)
+            .sum();
     }
 
     public boolean isYatzy() {
-        return dice.stream().mapToInt(die -> die).noneMatch(die -> die != dice.get(0));
+        return dice.stream()
+            .mapToInt(die -> die)
+            .noneMatch(die -> die != dice.get(0));
     }
 
     public int countValues(int value) {
-        return (int) dice.stream().filter(die -> die == value).count();
+        return (int) dice.stream()
+            .filter(die -> die == value)
+            .count();
     }
 
     public List<Integer> findPairs(int number) {
